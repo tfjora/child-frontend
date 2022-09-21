@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "composite": false,
+    "declaration": false,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "jsx": "react-jsx",
+    "module": "ES6",
+    "moduleResolution": "node",
+    "outDir": "lib",
+    "rootDir": "src",
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES6",
+    "noImplicitAny": false
+  },
+    "exclude": ["node_modules", "**/*__tests__/**/*", "e2e", "**/*_mockData/**/*"],
+    "include": ["src/**/*"], 
+    "typeRoots": [
+      "../node_modules/@types",
+      "../@types"
+    ]
+}
