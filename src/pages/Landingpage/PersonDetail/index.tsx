@@ -11,17 +11,19 @@ export default function PersonDetail() {
   const onSave = (content: any) => {
     const request = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", credentials: "same-origin" },
       body: JSON.stringify(content),
     };
-    fetch("https://childquotesapi.azurewebsites.net//api/personDetail", request)
+    fetch("https://childquotesapi.azurewebsites.net//api/DetailPerson", request)
       .then((r) => r.json())
       .then((d) => setPersonDetails([...personDetails, d]));
   };
 
   useEffect(() => {
     async function fetchData() {
-      fetch("https://childquotesapi.azurewebsites.net/api/personDetail")
+      fetch("https://childquotesapi.azurewebsites.net/api/DetailPerson", {
+        credentials: "same-origin",
+      })
         .then((b) => b.json())
         .then((data) => setPersonDetails(data));
     }

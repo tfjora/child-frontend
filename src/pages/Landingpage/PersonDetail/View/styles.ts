@@ -40,12 +40,12 @@ export const useStyles = makeStyles({
   },
   tableHeaderRow: {
     display: "grid",
-    gridTemplateColumns: "repeat(2, minmax(200px, 1fr))",
+    gridTemplateColumns: "repeat(4, minmax(200px, 1fr))",
   },
   tableRow: {
     boxSizing: "border-box",
     display: "grid",
-    gridTemplateColumns: "repeat(2, minmax(200px, 1fr))",
+    gridTemplateColumns: "repeat(4, minmax(200px, 1fr))",
     height: "46px",
   },
   tableThead: {

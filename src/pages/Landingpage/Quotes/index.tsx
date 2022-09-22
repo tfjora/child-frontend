@@ -11,7 +11,7 @@ export default function Quote() {
   const onSave = (content: any) => {
     const request = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", credentials: "same-origin" },
       body: JSON.stringify(content),
     };
     fetch("https://childquotesapi.azurewebsites.net//api/quotes", request)
@@ -21,7 +21,9 @@ export default function Quote() {
 
   useEffect(() => {
     async function fetchData() {
-      fetch("https://childquotesapi.azurewebsites.net/api/quotes")
+      fetch("https://childquotesapi.azurewebsites.net/api/quotes", {
+        credentials: "same-origin",
+      })
         .then((b) => b.json())
         .then((data) => setQuotes(data));
     }

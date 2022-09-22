@@ -11,9 +11,9 @@ export default function Header() {
     <div>
       <Tabs>
         <Tab
-          label="Persons"
-          value={LandingPageTabs.persons}
-          onClick={() => onChange(LandingPageTabs.persons)}
+          label={LandingPageTabs.person}
+          value={LandingPageTabs.person}
+          onClick={() => onChange(LandingPageTabs.person)}
         />
         <Tab
           label="Person detail"

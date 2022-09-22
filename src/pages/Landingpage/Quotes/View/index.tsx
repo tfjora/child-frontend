@@ -15,8 +15,8 @@ export default function View({ books }: Props) {
         <table className={styles.table}>
           <thead className={styles.tableThead}>
             <tr className={styles.tableHeaderRow}>
-              <th className={styles.tableHeader}>Title</th>
-              <th className={styles.tableHeader}>AuthorId</th>
+              <th className={styles.tableHeader}>Quote</th>
+              <th className={styles.tableHeader}>PersonId</th>
             </tr>
           </thead>
           <tbody className={styles.tableBody}>

@@ -11,7 +11,7 @@ export default function Person() {
   const onSave = async (content: any) => {
     const request = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", credentials: "same-origin" },
       body: JSON.stringify(content),
     };
     try {
@@ -23,7 +23,10 @@ export default function Person() {
 
   useEffect(() => {
     async function fetchData() {
-      fetch("https://childquotesapi.azurewebsites.net/api/person")
+      fetch("https://childquotesapi.azurewebsites.net/api/person", {
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+      })
         .then((b) => b.json())
         .then((data) => setPersons(data));
     }

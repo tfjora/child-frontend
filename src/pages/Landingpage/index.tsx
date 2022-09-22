@@ -12,7 +12,7 @@ export default function LandingPage() {
 
   const renderTabs = () => {
     switch (tab) {
-      case LandingPageTabs.persons:
+      case LandingPageTabs.person:
         return <Person />;
       case LandingPageTabs.personDetails:
         return <PersonDetail />;

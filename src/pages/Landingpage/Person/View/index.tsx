@@ -9,6 +9,7 @@ type Props = {
 export default function View({ persons }: Props) {
   const styles = useStyles();
 
+  console.log("persons222 :>> ", persons);
   return (
     <div>
       <table className={styles.table}>
@@ -16,18 +17,20 @@ export default function View({ persons }: Props) {
           <tr className={styles.tableHeaderRow}>
             <th className={styles.tableHeader}>First name</th>
             <th className={styles.tableHeader}>Last name</th>
-            <th className={styles.tableHeader}>Comment</th>
             <th className={styles.tableHeader}>Age</th>
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
-          {persons?.map((b: IPerson, index) => (
-            <tr key={index} className={styles.tableRow}>
-              <Cell item={b.firstName} />
-              <Cell item={b.lastName} />
-              <Cell item={b.dateBorn} />
-            </tr>
-          ))}
+          {persons &&
+            persons.map((b: IPerson, index) => (
+              <tr key={index} className={styles.tableRow}>
+                <>
+                  <Cell item={b.firstName} />
+                  <Cell item={b.lastName} />
+                  <Cell item={b.dateBorn} />
+                </>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

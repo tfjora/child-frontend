@@ -15,8 +15,10 @@ export default function View({ personDetails }: Props) {
         <table className={styles.table}>
           <thead className={styles.tableThead}>
             <tr className={styles.tableHeaderRow}>
-              <th className={styles.tableHeader}>Title</th>
-              <th className={styles.tableHeader}>AuthorId</th>
+              <th className={styles.tableHeader}>PersonId</th>
+              <th className={styles.tableHeader}>Date</th>
+              <th className={styles.tableHeader}>Height</th>
+              <th className={styles.tableHeader}>Weight</th>
             </tr>
           </thead>
           <tbody className={styles.tableBody}>

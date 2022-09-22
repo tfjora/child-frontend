@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/765cfb1d-8be3-4a49-a9f9-1ca8c89cce4b/AppServices/subscriptions/765cfb1d-8be3-4a49-a9f9-1ca8c89cce4b/resourceGroups/FjoraResource/providers/Microsoft.Web/sites/childQuotes",
+    "appService.deploySubpath": "."
+}
