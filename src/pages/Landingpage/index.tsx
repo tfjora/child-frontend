@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 
 import { LandingPageTabs } from '../../_models/Tabs';
-import Header from '../../components/Header';
 import Person from './Person';
 import PersonDetail from './PersonDetail';
 import Quote from './Quotes';
@@ -25,10 +24,5 @@ export default function LandingPage() {
         }
     };
 
-    return (
-        <div className={styles.container}>
-            <Header />
-            {renderTabs()}
-        </div>
-    );
+    return <div className={styles.container}>{renderTabs()}</div>;
 }

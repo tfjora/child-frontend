@@ -1,5 +1,4 @@
 import { MenuItem, Select } from '@material-ui/core';
-import React from 'react';
 
 export type IMenuItems = {
     value: any;

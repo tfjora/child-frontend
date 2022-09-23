@@ -9,7 +9,6 @@ type Props = {
 export default function View({ persons }: Props) {
     const styles = useStyles();
 
-    console.log('persons222 :>> ', persons);
     return (
         <div>
             <table className={styles.table}>
