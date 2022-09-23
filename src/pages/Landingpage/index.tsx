@@ -18,6 +18,7 @@ export default function LandingPage() {
         return <PersonDetail />;
       case LandingPageTabs.quotes:
         return <Quote />;
+
       default:
         return <div></div>;
     }

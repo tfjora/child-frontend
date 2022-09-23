@@ -4,12 +4,13 @@ import { LandingPageTabs } from "../../_models/Tabs";
 
 export default function Header() {
   const navigate = useNavigate();
-  const onChange = (value: LandingPageTabs) => {
+  const onChange = (value: LandingPageTabs | string) => {
     navigate(`/${value}`);
   };
+
   return (
     <div>
-      <Tabs>
+      <Tabs orientation="vertical">
         <Tab
           label={LandingPageTabs.person}
           value={LandingPageTabs.person}

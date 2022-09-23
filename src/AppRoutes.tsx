@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LandingPage from "./pages/Landingpage";
-
 import { ToastProvider } from "react-toast-notifications";
+
+import LandingPage from "./pages/Landingpage";
 
 export default function AppRoutes() {
   return (

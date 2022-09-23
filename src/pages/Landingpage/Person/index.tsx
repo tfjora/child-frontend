@@ -15,7 +15,8 @@ export default function Person() {
       body: JSON.stringify(content),
     };
     try {
-      await fetch("https://childquotesapi.azurewebsites.net/api/person", request)
+      // await fetch("https://childquotesapi.azurewebsites.net/api/person", request)
+      await fetch("/api/person", request)
         .then((r) => r.json())
         .then((d) => setPersons([...persons, d]));
     } catch (error) {}
@@ -23,7 +24,8 @@ export default function Person() {
 
   useEffect(() => {
     async function fetchData() {
-      fetch("https://childquotesapi.azurewebsites.net/api/person", {
+      fetch("/api/person", {
+        // fetch("https://childquotesapi.azurewebsites.net/api/person", {
         headers: { "Content-Type": "application/json" },
         credentials: "same-origin",
       })
