@@ -15,6 +15,8 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/react-router": "^5.1.18",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
     "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -29,7 +31,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint **/src/**/*.{ts,tsx}",
+    "lint:fix": "eslint ./src/*.{ts,tsx} --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -49,5 +53,10 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://localhost:7209"
+  "proxy": "https://localhost:7209",
+  "devDependencies": {
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-unused-imports": "^2.0.0"
+  }
 }

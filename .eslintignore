@@ -1,0 +1,5 @@
+node_modules
+pipelines
+k8s
+jest.config.js
+__mocks__
