@@ -1,5 +1,5 @@
 export enum LandingPageTabs {
-  person = "person",
-  personDetails = "personDetails",
-  quotes = "quotes",
+    person = 'person',
+    personDetails = 'personDetails',
+    quotes = 'quotes',
 }

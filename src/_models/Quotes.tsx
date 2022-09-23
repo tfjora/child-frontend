@@ -1,5 +1,5 @@
 export interface IQuotes {
-    quote: string,
-    personId: "string",
-    date: number,
+    quote: string;
+    personId: 'string';
+    date: number;
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { ComponentStatus } from '../_models/Fetch';
 /**
  * Used for making get calls to the api
@@ -16,8 +17,7 @@ const useAsyncFetch = (requestFunction: () => void, skip: boolean) => {
             const response = await request();
             setData(response);
             setStatus(ComponentStatus.loaded);
-        }
-        catch (error) {
+        } catch (error) {
             setError(error as any);
             setStatus(ComponentStatus.error);
         }
@@ -25,8 +25,7 @@ const useAsyncFetch = (requestFunction: () => void, skip: boolean) => {
     useEffect(() => {
         if (skip) {
             setStatus(ComponentStatus.loaded);
-        }
-        else {
+        } else {
             fetch(requestFunction);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
