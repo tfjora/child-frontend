@@ -2,7 +2,7 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-reac
 
 import AppRoutes from './AppRoutes';
 import Header from './components/Header';
-import SignIn from './pages/Landingpage/SignIn';
+import { SignInButton } from './pages/Landingpage/SignIn';
 import { useStyles } from './styles';
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
             <UnauthenticatedTemplate>
                 <>
                     <h5 className="card-title">Please sign-in to see your profile information.</h5>
-                    <SignIn />
+                    <SignInButton />
                 </>
             </UnauthenticatedTemplate>
         </div>

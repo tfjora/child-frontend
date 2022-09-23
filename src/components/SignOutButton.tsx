@@ -1,6 +1,6 @@
 import { useMsal } from '@azure/msal-react';
 
-import Button from './Button';
+import { Button } from './Button';
 
 export const SignOutButton = () => {
     const { instance } = useMsal();
@@ -10,12 +10,5 @@ export const SignOutButton = () => {
             postLogoutRedirectUri: '/',
         });
     };
-    return (
-        <Button
-            onClick={() => handleLogout()}
-            label="Sign out using Popup"
-            name="Sign out using Popup"
-            id="signin"
-        />
-    );
+    return <Button onClick={() => handleLogout()}>Sign out using Popup</Button>;
 };

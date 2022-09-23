@@ -1,22 +1,16 @@
-import { useMsal } from '@azure/msal-react';
+// import { useMsal } from '@azure/msal-react';
+// import { Button } from '@material-ui/core';
 
-import { loginRequest } from '../authConfig';
-import Button from './Button';
+// import { loginRequest } from '../authConfig.js';
 
 export const SignInButton = () => {
-    const { instance } = useMsal();
+    // const { instance } = useMsal();
 
-    const handleLogin = () => {
-        instance.loginRedirect(loginRequest).catch((e) => {
-            console.log(e);
-        });
-    };
-    return (
-        <Button
-            onClick={() => handleLogin()}
-            label="Sign in using Popup"
-            name="Sign in using Popup"
-            id="signin"
-        />
-    );
+    // const handleLogin = () => {
+    //     instance.loginRedirect(loginRequest).catch((e) => {
+    //         console.log(e);
+    //     });
+    // };
+    return <></>;
+    // return <Button onClick={() => handleLogin()}>Sign in using Popup</Button>;
 };

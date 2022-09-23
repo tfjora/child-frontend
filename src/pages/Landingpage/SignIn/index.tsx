@@ -1,10 +1,15 @@
-import { useIsAuthenticated } from '@azure/msal-react';
+import { useMsal } from '@azure/msal-react';
 
-import { SignInButton } from '../../../components/SignInButton';
-import { SignOutButton } from '../../../components/SignOutButton';
+import { loginRequest } from '../../../authConfig';
+import { Button } from '../../../components/Button';
 
-export default function SignIn() {
-    const isAuthenticated = useIsAuthenticated();
+export const SignInButton = () => {
+    const { instance } = useMsal();
 
-    return <>{isAuthenticated ? <SignOutButton /> : <SignInButton />}</>;
-}
+    const handleLogin = () => {
+        instance.loginRedirect(loginRequest).catch((e) => {
+            console.log(e);
+        });
+    };
+    return <Button onClick={() => handleLogin()}>Sign in using Popup</Button>;
+};

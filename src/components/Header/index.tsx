@@ -1,8 +1,8 @@
 import { useIsAuthenticated } from '@azure/msal-react';
-import { useNavigate } from 'react-router-dom';
+import { Tab, Tabs } from '@material-ui/core';
+import { useNavigate } from 'react-router';
 
 import { LandingPageTabs } from '../../_models/Tabs';
-import Button from '../Button';
 import { SignInButton } from '../SignInButton';
 import { SignOutButton } from '../SignOutButton';
 import { useStyles } from './style';
@@ -15,26 +15,14 @@ export default function Header({ children }) {
     };
 
     const isAuthenticated = useIsAuthenticated();
-
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.header}>
                     <div>FOTO</div>
-                    <div>
-                        <a className="navbar-brand" href="/">
-                            Microsoft Identity Platform
-                        </a>
-                        {isAuthenticated ? <SignOutButton /> : <SignInButton />}
-                    </div>
+                    <div>{isAuthenticated ? <SignOutButton /> : <SignInButton />}</div>
                 </div>
-                <Button
-                    onClick={() => onChange(LandingPageTabs.personDetails)}
-                    label="test"
-                    id="test"
-                    name="test"
-                />
-                {/* <Tabs>
+                <Tabs>
                     <Tab
                         label={LandingPageTabs.person}
                         value={LandingPageTabs.person}
@@ -50,7 +38,7 @@ export default function Header({ children }) {
                         value={LandingPageTabs.quotes}
                         onClick={() => onChange(LandingPageTabs.quotes)}
                     />
-                </Tabs> */}
+                </Tabs>
             </div>
             {children}
         </>
