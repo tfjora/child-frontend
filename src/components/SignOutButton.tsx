@@ -1,4 +1,5 @@
 import { useMsal } from '@azure/msal-react';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 import { Button } from './Button';
 
@@ -10,5 +11,9 @@ export const SignOutButton = () => {
             postLogoutRedirectUri: '/',
         });
     };
-    return <Button onClick={() => handleLogout()}>Sign out using Popup</Button>;
+    return (
+        <Button onClick={() => handleLogout()}>
+            <AccountBoxIcon />
+        </Button>
+    );
 };

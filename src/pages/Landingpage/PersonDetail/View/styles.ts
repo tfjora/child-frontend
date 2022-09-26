@@ -4,7 +4,7 @@ export const useStyles = makeStyles({
     table: {
         display: 'grid',
         gridTemplateRows: 'max-content auto',
-        maxHeight: `calc(8 * 30px)`,
+        maxHeight: `calc(8 * 600px)`,
         overflow: 'auto',
         width: '100%',
     },

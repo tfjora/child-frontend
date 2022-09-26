@@ -1,3 +1,5 @@
+import { Button, Drawer } from '@material-ui/core';
+import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState } from 'react';
 
 import type { IPerson } from '../../../_models/Person';
@@ -8,6 +10,7 @@ import View from './View';
 export default function Person() {
     const [persons, setPersons] = useState<IPerson[]>([]);
     const styles = useStyles();
+    const [openFlyout, setOpenFlyout] = useState(false);
 
     const onSave = async (content: any) => {
         const request = {
@@ -40,7 +43,19 @@ export default function Person() {
 
     return (
         <div className={styles.container}>
-            <Add onSave={onSave} />
+            <Drawer
+                anchor="right"
+                open={openFlyout}
+                onClose={() => setOpenFlyout(false)}
+                PaperProps={{ style: { minWidth: '25%' } }}
+            >
+                <Add onSave={onSave} />
+            </Drawer>
+            <div className={styles.addButton}>
+                <Button onClick={() => setOpenFlyout(true)}>
+                    <AddIcon color="success" />
+                </Button>
+            </div>
             <View persons={persons} />
         </div>
     );

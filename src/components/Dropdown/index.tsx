@@ -1,7 +1,7 @@
 import { MenuItem, Select } from '@material-ui/core';
 
 export type IMenuItems = {
-    value: any;
+    key: string;
     label: string;
 };
 
@@ -23,7 +23,7 @@ export default function DropDown({ value, label, onChange, menuItems }: Props) {
         >
             {menuItems.map((item, index) => {
                 return (
-                    <MenuItem value={item.value} key={index}>
+                    <MenuItem value={item.key} key={index}>
                         {item.label}
                     </MenuItem>
                 );

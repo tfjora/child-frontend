@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles({
     container: {
         background: 'lightgrey',
-        borderRadius: '16px',
+        borderRadius: '8px',
         boxSizing: 'border-box',
         display: 'grid',
         gridTemplateColumns: '1fr',
@@ -13,6 +13,6 @@ export const useStyles = makeStyles({
     },
     header: {
         display: 'grid',
-        gridTemplateColumns: '5fr 1fr',
+        gridTemplateColumns: '5fr max-content',
     },
 });

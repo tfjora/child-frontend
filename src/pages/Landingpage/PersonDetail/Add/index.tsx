@@ -14,8 +14,20 @@ export default function Add({ onSave }: Props) {
         weight: '',
     });
     const [person, setPerson] = useState('tete');
-    const [menuItems, setMenuItems] = useState([{ label: '', value: '' }]);
+    const [menuItems, setMenuItems] = useState([{ key: '', label: '' }]);
     const styles = useStyles();
+
+    const mappedPersonForDropdown = (data: any[]) => {
+        return data.map((item, index) => {
+            const isSelected = index == 0;
+            return {
+                isDisabled: isSelected,
+                isSelected: isSelected,
+                key: item,
+                label: `${item.firstName} ${item.lastName}`,
+            };
+        });
+    };
 
     useEffect(() => {
         async function fetchData() {
@@ -25,14 +37,7 @@ export default function Add({ onSave }: Props) {
             })
                 .then((b) => b.json())
                 .then((data) => {
-                    data.map((item) =>
-                        setMenuItems([
-                            {
-                                label: `${item.firstName} ${item.lastName}`,
-                                value: item,
-                            },
-                        ])
-                    );
+                    return setMenuItems(mappedPersonForDropdown(data));
                 });
         }
         fetchData();

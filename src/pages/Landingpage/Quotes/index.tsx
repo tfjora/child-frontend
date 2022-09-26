@@ -1,3 +1,5 @@
+import { Button, Drawer } from '@material-ui/core';
+import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState } from 'react';
 
 import type { IQuotes } from '../../../_models/Quotes';
@@ -8,6 +10,7 @@ import View from './View';
 export default function Quote() {
     const [quotes, setQuotes] = useState<IQuotes[]>([]);
     const styles = useStyles();
+    const [openFlyout, setOpenFlyout] = useState(false);
 
     const onSave = (content: any) => {
         const request = {
@@ -33,7 +36,19 @@ export default function Quote() {
 
     return (
         <div className={styles.container}>
-            <Add onSave={onSave} />
+            <Drawer
+                anchor="right"
+                open={openFlyout}
+                onClose={() => setOpenFlyout(false)}
+                PaperProps={{ style: { minWidth: '25%' } }}
+            >
+                <Add onSave={onSave} />
+            </Drawer>
+            <div className={styles.addButton}>
+                <Button onClick={() => setOpenFlyout(true)}>
+                    <AddIcon color="success" />
+                </Button>
+            </div>
             <View books={quotes} />
         </div>
     );

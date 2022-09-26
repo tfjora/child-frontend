@@ -1,5 +1,8 @@
 import { useIsAuthenticated } from '@azure/msal-react';
 import { Tab, Tabs } from '@material-ui/core';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import MessageIcon from '@mui/icons-material/Message';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { useNavigate } from 'react-router';
 
 import { LandingPageTabs } from '../../_models/Tabs';
@@ -19,26 +22,25 @@ export default function Header({ children }) {
         <>
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <div>FOTO</div>
-                    <div>{isAuthenticated ? <SignOutButton /> : <SignInButton />}</div>
+                    <Tabs>
+                        <Tab
+                            label={<PersonAddIcon />}
+                            value={LandingPageTabs.person}
+                            onClick={() => onChange(LandingPageTabs.person)}
+                        />
+                        <Tab
+                            label={<ContactPageIcon />}
+                            value={LandingPageTabs.personDetails}
+                            onClick={() => onChange(LandingPageTabs.personDetails)}
+                        />
+                        <Tab
+                            label={<MessageIcon />}
+                            value={LandingPageTabs.quotes}
+                            onClick={() => onChange(LandingPageTabs.quotes)}
+                        />
+                    </Tabs>
+                    {isAuthenticated ? <SignOutButton /> : <SignInButton />}
                 </div>
-                <Tabs>
-                    <Tab
-                        label={LandingPageTabs.person}
-                        value={LandingPageTabs.person}
-                        onClick={() => onChange(LandingPageTabs.person)}
-                    />
-                    <Tab
-                        label="Person detail"
-                        value={LandingPageTabs.personDetails}
-                        onClick={() => onChange(LandingPageTabs.personDetails)}
-                    />
-                    <Tab
-                        label="Quotes"
-                        value={LandingPageTabs.quotes}
-                        onClick={() => onChange(LandingPageTabs.quotes)}
-                    />
-                </Tabs>
             </div>
             {children}
         </>
