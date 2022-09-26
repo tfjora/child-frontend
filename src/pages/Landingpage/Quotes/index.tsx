@@ -35,7 +35,7 @@ export default function Quote() {
     }, []);
 
     return (
-        <div className={styles.container}>
+        <>
             <Drawer
                 anchor="right"
                 open={openFlyout}
@@ -45,11 +45,12 @@ export default function Quote() {
                 <Add onSave={onSave} />
             </Drawer>
             <div className={styles.addButton}>
+                <h2>Quotes</h2>
                 <Button onClick={() => setOpenFlyout(true)}>
                     <AddIcon color="success" />
                 </Button>
             </div>
             <View books={quotes} />
-        </div>
+        </>
     );
 }

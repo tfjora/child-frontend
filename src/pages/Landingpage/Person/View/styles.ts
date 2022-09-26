@@ -2,9 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
     table: {
+        border: '1px solid lightgrey',
         display: 'grid',
         gridTemplateRows: 'max-content auto',
-        maxHeight: `calc(8 * 30px)`,
+        maxHeight: `calc(8 * 600px)`,
         overflow: 'auto',
         width: '100%',
     },
@@ -26,27 +27,34 @@ export const useStyles = makeStyles({
     },
     tableHeader: {
         alignItems: 'center',
-        backgroundColor: 'lightgrey',
-        border: `0.5px solid black`,
+        borderBottom: '1px solid lightgrey',
+        borderCollapse: 'collapse',
         boxSizing: 'border-box',
         color: 'black',
         display: 'flex',
         fontSize: '14px',
-        fontWeight: 400,
+        fontWeight: 700,
         height: '48px',
-        justifyContent: 'space-between',
         paddingLeft: '4px',
-        textAlign: 'left',
     },
     tableHeaderRow: {
         display: 'grid',
         gridTemplateColumns: 'repeat(3, minmax(200px, 1fr))',
     },
     tableRow: {
+        borderBottom: '1px solid lightgrey',
         boxSizing: 'border-box',
         display: 'grid',
         gridTemplateColumns: 'repeat(3, minmax(200px, 1fr))',
         height: '46px',
+    },
+    tableTd: {
+        alignItems: 'center',
+        borderCollapse: 'collapse',
+        boxSizing: 'border-box',
+        display: 'flex',
+        height: '48px',
+        paddingLeft: '4px',
     },
     tableThead: {
         position: 'sticky',

@@ -42,7 +42,7 @@ export default function Person() {
     }, []);
 
     return (
-        <div className={styles.container}>
+        <>
             <Drawer
                 anchor="right"
                 open={openFlyout}
@@ -52,11 +52,12 @@ export default function Person() {
                 <Add onSave={onSave} />
             </Drawer>
             <div className={styles.addButton}>
+                <h2>Persons</h2>
                 <Button onClick={() => setOpenFlyout(true)}>
                     <AddIcon color="success" />
                 </Button>
             </div>
             <View persons={persons} />
-        </div>
+        </>
     );
 }

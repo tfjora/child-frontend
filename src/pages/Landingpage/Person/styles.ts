@@ -2,8 +2,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
     addButton: {
+        alignItems: 'center',
         display: 'flex',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
     },
-    container: {},
+    title: {
+        fontSize: '24px',
+    },
 });
