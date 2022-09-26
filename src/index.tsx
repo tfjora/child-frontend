@@ -12,13 +12,11 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 const msalInstance = new PublicClientApplication(msalConfig);
 
 root.render(
-    <React.StrictMode>
-        <MsalProvider instance={msalInstance}>
-            <ToastProvider>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-            </ToastProvider>
-        </MsalProvider>
-    </React.StrictMode>
+    <MsalProvider instance={msalInstance}>
+        <ToastProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </ToastProvider>
+    </MsalProvider>
 );
