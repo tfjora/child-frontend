@@ -2,6 +2,7 @@ import { Button, Drawer } from '@material-ui/core';
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState } from 'react';
 
+import useTokenContext from '../../../_context/tokenContext';
 import type { IPerson } from '../../../_models/Person';
 import Add from './Add';
 import { useStyles } from './styles';
@@ -12,15 +13,19 @@ export default function Person() {
     const styles = useStyles();
     const [openFlyout, setOpenFlyout] = useState(false);
 
+    const token = useTokenContext();
+    console.log('token', token);
+
     const onSave = async (content: any) => {
         const request = {
+            bearer: `${token}`,
             body: JSON.stringify(content),
             headers: { 'Content-Type': 'application/json', credentials: 'same-origin' },
             method: 'POST',
         };
         try {
-            await fetch('https://childquotesapi.azurewebsites.net/api/person', request)
-                // await fetch('/api/person', request)
+            // await fetch('https://childquotesapi.azurewebsites.net/api/person', request)
+            await fetch('http://localhost:7209/api/person', request)
                 .then((r) => r.json())
                 .then((d) => setPersons([...persons, d]));
         } catch (error) {
@@ -30,13 +35,23 @@ export default function Person() {
 
     useEffect(() => {
         async function fetchData() {
-            // fetch('/api/person', {
-            fetch('https://childquotesapi.azurewebsites.net/api/person', {
-                credentials: 'same-origin',
-                headers: { 'Content-Type': 'application/json' },
-            })
-                .then((b) => b.json())
-                .then((data) => setPersons(data));
+            const headers = new Headers();
+            console.log('token heere :>> ', token);
+
+            const bearer = token as any;
+            headers.append('Authorization', bearer);
+            const options = {
+                headers: headers,
+                method: 'GET',
+            };
+            try {
+                fetch('/api/person', options)
+                    // await fetch('https://childquotesapi.azurewebsites.net/api/person', options)
+                    .then((b) => b.json())
+                    .then((data) => setPersons(data));
+            } catch (error) {
+                console.log('error :>> ', error);
+            }
         }
         fetchData();
     }, []);

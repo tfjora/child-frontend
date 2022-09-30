@@ -1,18 +1,54 @@
-import { AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
+import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react';
+import { useEffect, useState } from 'react';
 
+import { TokenContext } from './_context/tokenContext';
 import AppRoutes from './AppRoutes';
+import { loginApiRequest } from './authConfig';
 import Header from './components/Header';
 import { SignInButton } from './pages/Landingpage/SignIn';
 import { useStyles } from './styles';
 
 export default function App() {
     const styles = useStyles();
+
+    const { instance, accounts } = useMsal();
+    const [accessToken, setAccessToken] = useState(null);
+
+    function RequestAccessToken() {
+        const request = {
+            ...loginApiRequest,
+            account: accounts[0],
+        };
+
+        // Silently acquires an access token which is then attached to a request for Microsoft Graph data
+        instance
+            .acquireTokenSilent(request)
+            .then((response) => {
+                console.log('response :>> ', response);
+                setAccessToken(response.accessToken as any);
+            })
+            .catch((e) => {
+                instance.acquireTokenPopup(request).then((response) => {
+                    setAccessToken(response.accessToken as any);
+                });
+                console.log('e :>> ', e);
+            });
+    }
+
+    useEffect(() => {
+        RequestAccessToken();
+    }, []);
+
     return (
         <div className={styles.container}>
             <AuthenticatedTemplate>
-                <Header>
-                    <AppRoutes />
-                </Header>
+                {accessToken && (
+                    <TokenContext.Provider value={accessToken as any}>
+                        <Header>
+                            <AppRoutes />
+                        </Header>
+                    </TokenContext.Provider>
+                )}
             </AuthenticatedTemplate>
 
             <UnauthenticatedTemplate>

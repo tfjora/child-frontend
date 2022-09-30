@@ -1,7 +1,6 @@
 import { useMsal } from '@azure/msal-react';
+import { Button } from '@material-ui/core';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-
-import { Button } from './Button';
 
 export const SignOutButton = () => {
     const { instance } = useMsal();
