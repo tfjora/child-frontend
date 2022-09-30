@@ -2,6 +2,7 @@ import { Button, Drawer } from '@material-ui/core';
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState } from 'react';
 
+import useTokenContext from '../../../_context/tokenContext';
 import type { IPersonDetail } from '../../../_models/PersonDetail';
 import Add from './Add';
 import { useStyles } from './styles';
@@ -11,12 +12,20 @@ export default function PersonDetail() {
     const [personDetails, setPersonDetails] = useState<IPersonDetail[]>([]);
     const styles = useStyles();
     const [openFlyout, setOpenFlyout] = useState(false);
+    const token = useTokenContext();
 
     const onSave = (content: any) => {
+        const headers = new Headers();
+
+        const bearer = `Bearer ${token}`;
+        headers.append('Authorization', bearer);
+        const options = {
+            headers: headers,
+            method: 'POST',
+        };
         const request = {
             body: JSON.stringify(content),
-            headers: { 'Content-Type': 'application/json', credentials: 'same-origin' },
-            method: 'POST',
+            ...options,
         };
         fetch('https://childquotesapi.azurewebsites.net//api/DetailPerson', request)
             .then((r) => r.json())
@@ -24,10 +33,16 @@ export default function PersonDetail() {
     };
 
     useEffect(() => {
+        const headers = new Headers();
+
+        const bearer = `Bearer ${token}`;
+        headers.append('Authorization', bearer);
+        const options = {
+            headers: headers,
+            method: 'GET',
+        };
         async function fetchData() {
-            fetch('https://childquotesapi.azurewebsites.net/api/DetailPerson', {
-                credentials: 'same-origin',
-            })
+            fetch('https://childquotesapi.azurewebsites.net/api/DetailPerson', options)
                 .then((b) => b.json())
                 .then((data) => setPersonDetails(data));
         }

@@ -14,18 +14,22 @@ export default function Person() {
     const [openFlyout, setOpenFlyout] = useState(false);
 
     const token = useTokenContext();
-    console.log('token', token);
 
     const onSave = async (content: any) => {
-        const request = {
-            bearer: `${token}`,
-            body: JSON.stringify(content),
-            headers: { 'Content-Type': 'application/json', credentials: 'same-origin' },
+        const headers = new Headers();
+
+        const bearer = `Bearer ${token}`;
+        headers.append('Authorization', bearer);
+        const options = {
+            headers: headers,
             method: 'POST',
         };
+        const request = {
+            body: JSON.stringify(content),
+            ...options,
+        };
         try {
-            // await fetch('https://childquotesapi.azurewebsites.net/api/person', request)
-            await fetch('http://localhost:7209/api/person', request)
+            await fetch('https://childquotesapi.azurewebsites.net/api/person', request)
                 .then((r) => r.json())
                 .then((d) => setPersons([...persons, d]));
         } catch (error) {
@@ -36,17 +40,15 @@ export default function Person() {
     useEffect(() => {
         async function fetchData() {
             const headers = new Headers();
-            console.log('token heere :>> ', token);
 
-            const bearer = token as any;
+            const bearer = `Bearer ${token}`;
             headers.append('Authorization', bearer);
             const options = {
                 headers: headers,
                 method: 'GET',
             };
             try {
-                fetch('/api/person', options)
-                    // await fetch('https://childquotesapi.azurewebsites.net/api/person', options)
+                fetch('https://childquotesapi.azurewebsites.net/api/person', options)
                     .then((b) => b.json())
                     .then((data) => setPersons(data));
             } catch (error) {
