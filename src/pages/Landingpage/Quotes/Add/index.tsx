@@ -7,7 +7,7 @@ type Props = { onSave: any };
 
 export default function Add({ onSave }: Props) {
     const [values, setValues] = useState({
-        dateTime: new Date().toUTCString(),
+        dateTime: '',
         personId: '',
         quote: '',
     });
@@ -45,7 +45,7 @@ export default function Add({ onSave }: Props) {
 
                 <TextField
                     label="Date"
-                    name="date"
+                    name="dateTime"
                     onChange={handleChange}
                     required
                     value={values.dateTime}

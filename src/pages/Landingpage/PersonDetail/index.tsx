@@ -15,34 +15,30 @@ export default function PersonDetail() {
     const token = useTokenContext();
 
     const onSave = (content: any) => {
-        const headers = new Headers();
-
-        const bearer = `Bearer ${token}`;
-        headers.append('Authorization', bearer);
-        const options = {
-            headers: headers,
-            method: 'POST',
-        };
         const request = {
             body: JSON.stringify(content),
-            ...options,
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
         };
-        fetch('https://childquotesapi.azurewebsites.net//api/DetailPerson', request)
+
+        fetch('/api/DetailPerson', request)
             .then((r) => r.json())
             .then((d) => setPersonDetails([...personDetails, d]));
     };
 
     useEffect(() => {
-        const headers = new Headers();
-
-        const bearer = `Bearer ${token}`;
-        headers.append('Authorization', bearer);
-        const options = {
-            headers: headers,
+        const request = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
             method: 'GET',
         };
         async function fetchData() {
-            fetch('https://childquotesapi.azurewebsites.net/api/DetailPerson', options)
+            fetch('/api/DetailPerson', request)
                 .then((b) => b.json())
                 .then((data) => setPersonDetails(data));
         }

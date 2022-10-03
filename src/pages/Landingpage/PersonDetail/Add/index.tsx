@@ -1,6 +1,7 @@
 import { Button, Divider, TextField } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 
+import useTokenContext from '../../../../_context/tokenContext';
 import DropDown from '../../../../components/Dropdown';
 import { useStyles } from './style';
 
@@ -16,6 +17,7 @@ export default function Add({ onSave }: Props) {
     const [person, setPerson] = useState('tete');
     const [menuItems, setMenuItems] = useState([{ key: '', label: '' }]);
     const styles = useStyles();
+    const token = useTokenContext();
 
     const mappedPersonForDropdown = (data: any[]) => {
         return data.map((item, index) => {
@@ -30,11 +32,15 @@ export default function Add({ onSave }: Props) {
     };
 
     useEffect(() => {
+        const request = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            method: 'GET',
+        };
         async function fetchData() {
-            fetch('https://childquotesapi.azurewebsites.net/api/person', {
-                credentials: 'same-origin',
-                headers: { 'Content-Type': 'application/json' },
-            })
+            fetch('/api/person', request)
                 .then((b) => b.json())
                 .then((data) => {
                     return setMenuItems(mappedPersonForDropdown(data));
@@ -52,8 +58,9 @@ export default function Add({ onSave }: Props) {
     };
 
     const handleChangePerson = (event: any) => {
+        console.log('event.target.value', event.target.value.id);
         setPerson(event.target.value);
-        setValues({ ...values, [event.target.name]: event.target.value?.id });
+        setValues({ ...values, ['personId']: event.target.value?.id });
     };
 
     return (
@@ -76,7 +83,7 @@ export default function Add({ onSave }: Props) {
                 />
                 <TextField
                     label="weight"
-                    name="authorId"
+                    name="weight"
                     onChange={handleChange}
                     required
                     value={values.weight}

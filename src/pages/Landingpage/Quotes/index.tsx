@@ -15,34 +15,29 @@ export default function Quote() {
     const token = useTokenContext();
 
     const onSave = (content: any) => {
-        const headers = new Headers();
-
-        const bearer = `Bearer ${token}`;
-        headers.append('Authorization', bearer);
-        const options = {
-            headers: headers,
-            method: 'POST',
-        };
         const request = {
             body: JSON.stringify(content),
-            ...options,
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
         };
-        fetch('https://childquotesapi.azurewebsites.net//api/quotes', request)
+        fetch('/api/quotes', request)
             .then((r) => r.json())
             .then((d) => setQuotes([...quotes, d]));
     };
 
     useEffect(() => {
-        const headers = new Headers();
-
-        const bearer = `Bearer ${token}`;
-        headers.append('Authorization', bearer);
-        const options = {
-            headers: headers,
+        const request = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
             method: 'GET',
         };
         async function fetchData() {
-            fetch('https://childquotesapi.azurewebsites.net/api/quotes', options)
+            fetch('/api/quotes', request)
                 .then((b) => b.json())
                 .then((data) => setQuotes(data));
         }

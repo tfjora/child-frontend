@@ -16,22 +16,24 @@ export default function Person() {
     const token = useTokenContext();
 
     const onSave = async (content: any) => {
-        const headers = new Headers();
-
-        const bearer = `Bearer ${token}`;
-        headers.append('Authorization', bearer);
-        const options = {
-            headers: headers,
-            method: 'POST',
-        };
         const request = {
             body: JSON.stringify(content),
-            ...options,
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
         };
         try {
-            await fetch('https://childquotesapi.azurewebsites.net/api/person', request)
+            // await fetch('https://childquotesapi.azurewebsites.net/api/person', request)
+            fetch('/api/person', request)
                 .then((r) => r.json())
-                .then((d) => setPersons([...persons, d]));
+                .then((d) => {
+                    console.log('d :>> ', d);
+                    const p = [...persons, d];
+                    console.log('p', p);
+                    setPersons([...persons, d]);
+                });
         } catch (error) {
             console.log('error');
         }
@@ -48,7 +50,8 @@ export default function Person() {
                 method: 'GET',
             };
             try {
-                fetch('https://childquotesapi.azurewebsites.net/api/person', options)
+                // fetch('https://childquotesapi.azurewebsites.net/api/person', options)
+                fetch('/api/person', options)
                     .then((b) => b.json())
                     .then((data) => setPersons(data));
             } catch (error) {
