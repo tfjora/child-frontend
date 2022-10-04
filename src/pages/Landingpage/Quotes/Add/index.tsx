@@ -54,7 +54,7 @@ export default function Add({ onSave }: Props) {
             method: 'GET',
         };
         async function fetchData() {
-            fetch('/api/person', request)
+            await fetch('https://childquotesapi.azurewebsites.net/api/person', request)
                 .then((b) => b.json())
                 .then((data) => {
                     return setMenuItems(mappedPersonForDropdown(data));

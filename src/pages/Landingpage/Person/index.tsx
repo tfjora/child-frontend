@@ -26,7 +26,6 @@ export default function Person() {
         };
         try {
             await fetch('https://childquotesapi.azurewebsites.net/api/person', request)
-                // fetch('/api/person', request)
                 .then((r) => r.json())
                 .then((d) => {
                     setPersons([...persons, d]);
@@ -48,7 +47,6 @@ export default function Person() {
             };
             try {
                 fetch('https://childquotesapi.azurewebsites.net/api/person', options)
-                    // fetch('/api/person', options)
                     .then((b) => b.json())
                     .then((data) => setPersons(data));
             } catch (error) {
