@@ -58,7 +58,6 @@ export default function Add({ onSave }: Props) {
     };
 
     const handleChangePerson = (event: any) => {
-        console.log('event.target.value', event.target.value.id);
         setPerson(event.target.value);
         setValues({ ...values, ['personId']: event.target.value?.id });
     };

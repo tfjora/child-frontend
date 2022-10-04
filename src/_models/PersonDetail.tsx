@@ -1,6 +1,8 @@
+import type { IPerson } from './Person';
+
 export interface IPersonDetail {
     height: string;
     weight: string;
-    personId: string;
-    date: number;
+    person: IPerson;
+    date: string;
 }

@@ -1,5 +1,7 @@
+import type { IPerson } from './Person';
+
 export interface IQuotes {
     quote: string;
-    personId: 'string';
-    date: number;
+    person: IPerson;
+    dateTime: string;
 }

@@ -60,7 +60,7 @@ export default function Quote() {
                     <AddIcon color="success" />
                 </Button>
             </div>
-            <View books={quotes} />
+            <View quotes={quotes} />
         </>
     );
 }

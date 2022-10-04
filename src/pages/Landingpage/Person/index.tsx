@@ -29,9 +29,6 @@ export default function Person() {
             fetch('/api/person', request)
                 .then((r) => r.json())
                 .then((d) => {
-                    console.log('d :>> ', d);
-                    const p = [...persons, d];
-                    console.log('p', p);
                     setPersons([...persons, d]);
                 });
         } catch (error) {

@@ -1,4 +1,5 @@
 import type { IPerson } from '../../../../_models/Person';
+import { calculateAge } from '../../../../_utilities/date';
 import Cell from './Cell';
 import { useStyles } from './styles';
 
@@ -26,7 +27,7 @@ export default function View({ persons }: Props) {
                                 <>
                                     <Cell item={b.firstName} />
                                     <Cell item={b.lastName} />
-                                    <Cell item={b.dateBorn} />
+                                    <Cell item={calculateAge(b.dateBorn)} />
                                 </>
                             </tr>
                         ))}

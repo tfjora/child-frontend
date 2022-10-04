@@ -39,13 +39,13 @@ export const useStyles = makeStyles({
     },
     tableHeaderRow: {
         display: 'grid',
-        gridTemplateColumns: 'repeat(2, minmax(200px, 1fr))',
+        gridTemplateColumns: 'repeat(3, minmax(200px, 1fr))',
     },
     tableRow: {
         borderBottom: '1px solid lightgrey',
         boxSizing: 'border-box',
         display: 'grid',
-        gridTemplateColumns: 'repeat(2, minmax(200px, 1fr))',
+        gridTemplateColumns: 'repeat(3, minmax(200px, 1fr))',
         height: '46px',
     },
     tableTd: {

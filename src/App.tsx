@@ -12,7 +12,6 @@ export default function App() {
     const styles = useStyles();
 
     const { instance, accounts } = useMsal();
-    console.log('accounts', accounts);
     const [accessToken, setAccessToken] = useState(null);
 
     function RequestAccessToken() {
@@ -25,7 +24,6 @@ export default function App() {
         instance
             .acquireTokenSilent(request)
             .then((response) => {
-                console.log('response :>> ', response);
                 setAccessToken(response.accessToken as any);
             })
             .catch((e) => {
