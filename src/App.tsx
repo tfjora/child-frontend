@@ -1,7 +1,7 @@
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react';
 import { useEffect, useState } from 'react';
 
-import { TokenContext } from './_context/tokenContext';
+import { AccountContext as AccountContext } from './_context/tokenContext';
 import AppRoutes from './AppRoutes';
 import { loginApiRequest } from './authConfig';
 import Header from './components/Header';
@@ -12,6 +12,7 @@ export default function App() {
     const styles = useStyles();
 
     const { instance, accounts } = useMsal();
+    console.log('accounts', accounts);
     const [accessToken, setAccessToken] = useState(null);
 
     function RequestAccessToken() {
@@ -43,11 +44,11 @@ export default function App() {
         <div className={styles.container}>
             <AuthenticatedTemplate>
                 {accessToken && (
-                    <TokenContext.Provider value={accessToken as any}>
+                    <AccountContext.Provider value={{ account: accounts[0], token: accessToken }}>
                         <Header>
                             <AppRoutes />
                         </Header>
-                    </TokenContext.Provider>
+                    </AccountContext.Provider>
                 )}
             </AuthenticatedTemplate>
 

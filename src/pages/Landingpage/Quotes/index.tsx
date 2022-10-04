@@ -2,7 +2,7 @@ import { Button, Drawer } from '@material-ui/core';
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState } from 'react';
 
-import useTokenContext from '../../../_context/tokenContext';
+import useAccountContext from '../../../_context/tokenContext';
 import type { IQuotes } from '../../../_models/Quotes';
 import Add from './Add';
 import { useStyles } from './styles';
@@ -12,7 +12,7 @@ export default function Quote() {
     const [quotes, setQuotes] = useState<IQuotes[]>([]);
     const styles = useStyles();
     const [openFlyout, setOpenFlyout] = useState(false);
-    const token = useTokenContext();
+    const { token } = useAccountContext();
 
     const onSave = (content: any) => {
         const request = {

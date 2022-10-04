@@ -1,7 +1,7 @@
 import { Button, Divider, TextField } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 
-import useTokenContext from '../../../../_context/tokenContext';
+import useAccountContext from '../../../../_context/tokenContext';
 import DropDown from '../../../../components/Dropdown';
 import { useStyles } from './style';
 
@@ -17,7 +17,7 @@ export default function Add({ onSave }: Props) {
     const [person, setPerson] = useState('tete');
     const [menuItems, setMenuItems] = useState([{ key: '', label: '' }]);
     const styles = useStyles();
-    const token = useTokenContext();
+    const { token } = useAccountContext();
 
     const mappedPersonForDropdown = (data: any[]) => {
         return data.map((item, index) => {

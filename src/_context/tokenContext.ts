@@ -1,13 +1,21 @@
 import { createContext, useContext } from 'react';
 
-export interface ITokenContext {
-    token: string;
-}
-
-export const TokenContext = createContext<ITokenContext>('' as unknown as ITokenContext);
-
-export const useTokenContext = (): ITokenContext => {
-    return useContext<ITokenContext>(TokenContext);
+type Account = {
+    name?: string;
+    localAccountId: string;
+    homeAccountId: string;
+    username: string;
 };
 
-export default useTokenContext;
+export interface IAccountContext {
+    token: string;
+    account: Account;
+}
+
+export const AccountContext = createContext<IAccountContext>('' as unknown as IAccountContext);
+
+export const useAccountContext = (): IAccountContext => {
+    return useContext<IAccountContext>(AccountContext);
+};
+
+export default useAccountContext;

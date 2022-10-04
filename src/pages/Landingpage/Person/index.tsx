@@ -2,7 +2,7 @@ import { Button, Drawer } from '@material-ui/core';
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState } from 'react';
 
-import useTokenContext from '../../../_context/tokenContext';
+import useAccountContext from '../../../_context/tokenContext';
 import type { IPerson } from '../../../_models/Person';
 import Add from './Add';
 import { useStyles } from './styles';
@@ -13,11 +13,11 @@ export default function Person() {
     const styles = useStyles();
     const [openFlyout, setOpenFlyout] = useState(false);
 
-    const token = useTokenContext();
+    const { token, account } = useAccountContext();
 
     const onSave = async (content: any) => {
         const request = {
-            body: JSON.stringify(content),
+            body: JSON.stringify({ ...content, users: account }),
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
