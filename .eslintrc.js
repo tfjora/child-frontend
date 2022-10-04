@@ -27,16 +27,10 @@ module.exports = {
           "error",
           { blankLine: "always", prev: "function", next: "function" },
         ],
+        "@typescript-eslint/no-explicit-any": ["off"],
         "react/prop-types": "off",
         "unused-imports/no-unused-imports": "error",
-        "@typescript-eslint/no-unused-vars": ["error"],
-        "@typescript-eslint/explicit-function-return-type": [
-          "warn",
-          {
-            allowConciseArrowFunctionExpressionsStartingWithVoid: true,
-            allowExpressions: true,
-          },
-        ],
+        "@typescript-eslint/no-unused-vars": ["error"],        
         "prettier/prettier": ["error", {}, { usePrettierrc: true }],
         "simple-import-sort/exports": "error",
         "simple-import-sort/imports": "error",

@@ -1,3 +1,5 @@
+import type { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+import type { ReactNode } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { LandingPageTabs } from '../../_models/Tabs';
@@ -6,11 +8,11 @@ import PersonDetail from './PersonDetail';
 import Quote from './Quotes';
 import { useStyles } from './style';
 
-export default function LandingPage() {
+export default function LandingPage(): ReactJSXElement {
     const { tab } = useParams();
     const styles = useStyles();
 
-    const renderTabs = () => {
+    const renderTabs = (): ReactNode => {
         switch (tab) {
             case LandingPageTabs.person:
                 return <Person />;
