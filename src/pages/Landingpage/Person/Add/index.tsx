@@ -1,9 +1,15 @@
 import { Button, CircularProgress, Divider, TextField } from '@material-ui/core';
+import { format } from 'date-fns';
 import { useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
 
+import { DATE_FNS } from '../../../../_constants/date';
 import { useStyles } from './styles';
-const EMPTY_VALUES = { dateBorn: '', firstName: '', lastName: '' };
+const EMPTY_VALUES = {
+    dateBorn: format(new Date(), DATE_FNS.ISO_YYYY_MM_DD),
+    firstName: '',
+    lastName: '',
+};
 
 type Props = { onSave: (values: any) => void };
 
@@ -47,7 +53,6 @@ export default function Add({ onSave }: Props) {
                     onChange={handleChange}
                     required
                     value={values.firstName}
-                    variant="outlined"
                     disabled={isSaving}
                 />
 
@@ -57,16 +62,15 @@ export default function Add({ onSave }: Props) {
                     onChange={handleChange}
                     required
                     value={values.lastName}
-                    variant="outlined"
                     disabled={isSaving}
                 />
                 <TextField
+                    id="date"
                     label="Date born"
+                    type="date"
                     name="dateBorn"
                     onChange={handleChange}
-                    required
                     value={values.dateBorn}
-                    variant="outlined"
                     disabled={isSaving}
                 />
 

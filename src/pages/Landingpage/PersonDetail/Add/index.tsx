@@ -1,6 +1,8 @@
 import { Button, Divider, TextField } from '@material-ui/core';
+import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 
+import { DATE_FNS } from '../../../../_constants/date';
 import useAccountContext from '../../../../_context/tokenContext';
 import DropDown from '../../../../components/Dropdown';
 import { useStyles } from './style';
@@ -9,7 +11,7 @@ type Props = { onSave: any };
 
 export default function Add({ onSave }: Props) {
     const [values, setValues] = useState({
-        date: new Date().toUTCString(),
+        date: format(new Date(), DATE_FNS.ISO_YYYY_MM_DD),
         height: '',
         personId: '',
         weight: '',
@@ -64,29 +66,27 @@ export default function Add({ onSave }: Props) {
 
     return (
         <div className={styles.container}>
-            <form autoComplete="off" noValidate className={styles.container}>
+            <form autoComplete="off" className={styles.container}>
                 <DropDown
                     value={person}
                     onChange={handleChangePerson}
                     label={'Add person'}
                     menuItems={menuItems}
                 />
-
                 <TextField
+                    id="date"
                     label="Date"
+                    type="date"
                     name="date"
                     onChange={handleChange}
-                    required
                     value={values.date}
-                    variant="outlined"
                 />
                 <TextField
-                    label="weight"
+                    label="Weight"
                     name="weight"
                     onChange={handleChange}
-                    required
                     value={values.weight}
-                    variant="outlined"
+                    required
                 />
                 <TextField
                     label="Height"
@@ -94,7 +94,6 @@ export default function Add({ onSave }: Props) {
                     onChange={handleChange}
                     required
                     value={values.height}
-                    variant="outlined"
                 />
 
                 <Divider />
