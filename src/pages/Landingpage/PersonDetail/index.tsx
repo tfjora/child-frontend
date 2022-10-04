@@ -14,7 +14,7 @@ export default function PersonDetail() {
     const [openFlyout, setOpenFlyout] = useState(false);
     const { token } = useAccountContext();
 
-    const onSave = (content: any) => {
+    const onSave = async (content: any) => {
         const request = {
             body: JSON.stringify(content),
             headers: {
@@ -24,7 +24,7 @@ export default function PersonDetail() {
             method: 'POST',
         };
 
-        fetch('/api/DetailPerson', request)
+        await fetch('https://childquotesapi.azurewebsites.net/api/DetailPerson', request)
             .then((r) => r.json())
             .then((d) => setPersonDetails([...personDetails, d]));
     };
@@ -38,7 +38,7 @@ export default function PersonDetail() {
             method: 'GET',
         };
         async function fetchData() {
-            fetch('/api/DetailPerson', request)
+            await fetch('https://childquotesapi.azurewebsites.net/api/DetailPerson', request)
                 .then((b) => b.json())
                 .then((data) => setPersonDetails(data));
         }

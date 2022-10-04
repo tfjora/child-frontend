@@ -61,7 +61,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://localhost:7209/",
   "devDependencies": {
     "@mui/icons-material": "^5.10.6",
     "eslint-plugin-prettier": "^4.2.1",

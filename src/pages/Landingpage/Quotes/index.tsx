@@ -14,7 +14,7 @@ export default function Quote() {
     const [openFlyout, setOpenFlyout] = useState(false);
     const { token } = useAccountContext();
 
-    const onSave = (content: any) => {
+    const onSave = async (content: any) => {
         const request = {
             body: JSON.stringify(content),
             headers: {
@@ -23,7 +23,7 @@ export default function Quote() {
             },
             method: 'POST',
         };
-        fetch('/api/quotes', request)
+        await fetch('https://childquotesapi.azurewebsites.net/api/quotes', request)
             .then((r) => r.json())
             .then((d) => setQuotes([...quotes, d]));
     };
@@ -37,7 +37,7 @@ export default function Quote() {
             method: 'GET',
         };
         async function fetchData() {
-            fetch('/api/quotes', request)
+            await fetch('https://childquotesapi.azurewebsites.net/api/quotes', request)
                 .then((b) => b.json())
                 .then((data) => setQuotes(data));
         }
