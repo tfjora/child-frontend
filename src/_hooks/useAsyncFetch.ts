@@ -28,7 +28,6 @@ const useAsyncFetch = (requestFunction: () => void, skip: boolean) => {
         } else {
             fetch(requestFunction);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     function retry(retryRequest: any) {
         setStatus(ComponentStatus.reFetching);
